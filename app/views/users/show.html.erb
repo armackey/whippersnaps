@@ -1,0 +1,15 @@
+
+
+<div class="row">
+  <div class= "col-md-3">
+<% @user.photos.each do |photo| %>
+
+<%= image_tag photo.image.url(:full)%>
+
+<% end %>
+
+</div>
+</div>
+
+<%= debug(params) %>
+

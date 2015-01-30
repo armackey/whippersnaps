@@ -1,0 +1,72 @@
+
+
+
+
+
+<h1>Hi, <%= @user.username %></h1>
+
+
+<div class="col-md-5">
+        <h2>You're one of us, it's time for you to add some Snaps! So we can admire your glory! :)</h2>
+
+<div class="row">
+    <div class="col-md-5">
+      <% @user.photos.each do |photo| %>
+
+      <%= image_tag photo.image.url(:full)%>
+
+   <% end %>
+
+
+
+
+   </div>
+  </div>
+</div>
+
+
+
+<%= form_for(Photo.new) do |f| %>
+
+
+  <%= f.file_field :image %>
+  
+<%= f.text_field :title, placeholder: "ABOUT THIS SNAP" %>
+<br>
+  <%= f.submit 'add snaps!!' %>
+  <br>
+
+ 
+
+  <%= link_to "OOPS It's A NUDE!! (remove SNAP)", photo_path, method: :delete %>
+
+<br>
+ <%= link_to "I hate this site!", delete_user_path(@user), method: :delete %>
+  <% end %>
+
+  <!-- Modal -->
+
+  <button type="button" class="btn btn-warning btn-lg" data-toggle="modal" data-target="#myModal">Edit Profile
+</button>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Things Change!</h4>
+      </div>
+      <div class="modal-body">
+          <%= render 'shared/update', object: @user  %>
+      </div>
+      <div class="modal-body">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+   
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
